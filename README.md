@@ -12,3 +12,6 @@ This project can control a window to automatically turn on / turn off via water 
 * Mosquitto 
 * paho-mqtt (for Python)
 * Flask
+
+The codes were based on the tutorial of Rui Santos but modified for the project requirements (Micropython code for ESP8266, using DHT22, Rain Sensor, and the Stepper Motor). Refer to the link below.
+https://randomnerdtutorials.com/raspberry-pi-publishing-mqtt-messages-to-esp8266/
