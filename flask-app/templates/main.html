@@ -16,7 +16,7 @@
    <h2>{{ things[thing].name }}
    {% if things[thing].state == 'True' %}
       is currently <strong>on</strong></h2><div class="row"><div class="col-md-2">
-      <a href="/esp8266/{{thing}}}/0" class="btn btn-block btn-lg btn-default" role="button">Turn off</a></div></div>
+      <a href="/esp8266/{{thing}}/0" class="btn btn-block btn-lg btn-default" role="button">Turn off</a></div></div>
    {% else %}
       is currently <strong>off</strong></h2><div class="row"><div class="col-md-2">
       <a href="/esp8266/{{thing}}/1" class="btn btn-block btn-lg btn-primary" role="button">Turn on</a></div></div>
