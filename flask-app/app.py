@@ -12,13 +12,13 @@ mqttc.connect("localhost",1883,60)
 mqttc.loop_start()
 
 # Create a dictionary called pins to store the pin number, name, and pin state:
-things = {
-   1 : {'name' : 'window1', 'board' : 'esp8266', 'topic' : 'esp8266/1', 'state' : 'False'},
+pins = {
+   1 : {'name' : 'Window 1', 'board' : 'esp8266', 'topic' : 'esp8266/1', 'state' : 'False'},
    }
 
 # Put the pin dictionary into the template data dictionary:
 templateData = {
-   'things' : things
+   'pins' : pins
    }
 
 @app.route("/")
@@ -27,25 +27,25 @@ def main():
    return render_template('main.html', **templateData)
 
 # The function below is executed when someone requests a URL with the pin number and action in it:
-@app.route("/<board>/<changething>/<action>")
+@app.route("/<board>/<changePin>/<action>")
 
-def action(board, changething, action):
+def action(board, changePin, action):
    # Convert the pin from the URL into an integer:
-   changething = int(changething)
+   changePin = int(changePin)
    # Get the device name for the pin being changed:
-   devicePin = things[changething]['name']
+   devicePin = pins[changePin]['name']
    # If the action part of the URL is "on," execute the code indented below:
    if action == "1" and board == 'esp8266':
-      mqttc.publish(things[changething]['topic'],"1")
-      things[changething]['state'] = 'True'
+      mqttc.publish(pins[changePin]['topic'],"1")
+      pins[changePin]['state'] = 'True'
 
    if action == "0" and board == 'esp8266':
-      mqttc.publish(things[changething]['topic'],"0")
-      things[changething]['state'] = 'False'
+      mqttc.publish(pins[changePin]['topic'],"0")
+      pins[changePin]['state'] = 'False'
 
    # Along with the pin dictionary, put the message into the template data dictionary:
    templateData = {
-      'things' : things
+      'pins' : pins
    }
 
    return render_template('main.html', **templateData)
