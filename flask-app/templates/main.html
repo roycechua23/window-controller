@@ -12,14 +12,14 @@
 
 <body>
    <h1>RPi Web Server - ESP8266 MQTT</h1>
-   {% for pin in pins %}
-   <h2>{{ pins[pin].name }}
-   {% if pins[pin].state == 'True' %}
+   {% for thing in things %}
+   <h2>{{ things[thing].name }}
+   {% if things[thing].state == 'True' %}
       is currently <strong>on</strong></h2><div class="row"><div class="col-md-2">
-      <a href="/esp8266/{{pin}}/0" class="btn btn-block btn-lg btn-default" role="button">Turn off</a></div></div>
+      <a href="/esp8266/{{thing}}}/0" class="btn btn-block btn-lg btn-default" role="button">Turn off</a></div></div>
    {% else %}
       is currently <strong>off</strong></h2><div class="row"><div class="col-md-2">
-      <a href="/esp8266/{{pin}}/1" class="btn btn-block btn-lg btn-primary" role="button">Turn on</a></div></div>
+      <a href="/esp8266/{{thing}}/1" class="btn btn-block btn-lg btn-primary" role="button">Turn on</a></div></div>
    {% endif %}
    {% endfor %}
 </body>
