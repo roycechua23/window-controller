@@ -17,7 +17,9 @@ mqtt_server = '192.168.8.119'
 #mqtt_server = '192.168.1.144'
 client_id = ubinascii.hexlify(unique_id())
 topic_sub1 = b'esp8266/window1'
-topic_pub = b'rainsensor'
+topic_pub = b'temperature'
+last_message = 0
+message_interval = 5
 
 station = network.WLAN(network.STA_IF)
 station.active(True)
@@ -120,8 +122,8 @@ while True:
     new_message = client.check_msg()
     if new_message != 'None':
       d.measure()
-      t = str(d.temperature)  
-      client.publish(topic_pub, t)
+      t = d.temperature() 
+      client.publish(topic_pub, b'%d' % t)
     time.sleep(1)
   except OSError as e:
     restart_and_reconnect()
