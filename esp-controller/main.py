@@ -15,7 +15,7 @@ password = 'R0yc3261523'
 mqtt_server = '192.168.8.119'
 #EXAMPLE IP ADDRESS
 #mqtt_server = '192.168.1.144'
-client_id = ubinascii.hexlify(unique_id())
+client_id = ubinascii.hexlify(machine.unique_id())
 topic_sub1 = b'esp8266/window1'
 topic_pub = b'temperature'
 last_message = 0
@@ -69,27 +69,27 @@ def closeWindow():
 
 def openWindow():
     for i in range(1000): 
-        d1.on() 
-        d5.on()
+        d8.on() 
+        d4.on()
         time.sleep(0.0031); 
-        d1.off()
-        d5.off() 
-        d2.on() 
-        d6.on()
+        d8.off()
+        d4.off() 
+        d7.on() 
+        d3.on()
         time.sleep(0.0031); 
-        d2.off() 
-        d6.off()
-        d3.on() 
-        d7.on()
+        d7.off() 
+        d3.off()
+        d6.on() 
+        d2.on()
         time.sleep(0.0031); 
-        d3.off() 
-        d7.off()
-        d4.on() 
-        d8.on()
+        d6.off() 
+        d2.off()
+        d5.on() 
+        d1.on()
         i+=1
         time.sleep(0.0031); 
-        d4.off()
-        d8.off()
+        d5.off()
+        d1.off()
 
 def sub_cb(topic, msg):
   print((topic, msg))
@@ -104,7 +104,7 @@ def connect_and_subscribe():
   client.set_callback(sub_cb)
   client.connect()
   client.subscribe(topic_sub1)
-  print('Connected to %s MQTT broker, subscribed to %s and %s topic' % (mqtt_server, topic_sub1))
+  print('Connected to %s MQTT broker, subscribed to %s' % (mqtt_server, topic_sub1))
   return client
 
 def restart_and_reconnect():
